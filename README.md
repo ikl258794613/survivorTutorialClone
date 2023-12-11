@@ -1,3 +1,3 @@
 # survivorTutorialClone
 
-record Tutorial
+Record Tutorial
