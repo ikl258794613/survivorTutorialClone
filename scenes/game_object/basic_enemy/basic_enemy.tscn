@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dyibr6m08rlf6" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_dk073"]
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_v6fhc"]
-[ext_resource type="PackedScene" uid="uid://dt8icktcod2py" path="res://scenes/component/health_compentent.tscn" id="2_xq0ml"]
-[ext_resource type="PackedScene" uid="uid://o6skasynj1vd" path="res://scenes/component/vial_drop_component.tscn" id="3_p3xvj"]
-[ext_resource type="PackedScene" uid="uid://duwo2vjvfnoig" path="res://scenes/component/hurtbox_component.tscn" id="4_hlb0u"]
+[ext_resource type="PackedScene" uid="uid://dt8icktcod2py" path="res://scenes/game_object/component/health_compentent.tscn" id="2_xq0ml"]
+[ext_resource type="PackedScene" uid="uid://o6skasynj1vd" path="res://scenes/game_object/component/vial_drop_component.tscn" id="3_p3xvj"]
+[ext_resource type="PackedScene" uid="uid://duwo2vjvfnoig" path="res://scenes/game_object/component/hurtbox_component.tscn" id="4_hlb0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpou3"]
 radius = 12.0

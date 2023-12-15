@@ -4,9 +4,6 @@ const MAX_SPEED = 40
 
 @onready var health_component:HealthComponent = $HealthComponent
 
-
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = get_direction_to_player() 

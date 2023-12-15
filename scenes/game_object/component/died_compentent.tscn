@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dshwgesrur7lw"]
 
-[ext_resource type="Script" path="res://scenes/component/died_component.gd" id="1_axw07"]
+[ext_resource type="Script" path="res://scenes/game_object/component/died_component.gd" id="1_axw07"]
 
 [node name="DiedCompentent" type="Node"]
 script = ExtResource("1_axw07")
