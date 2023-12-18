@@ -1,10 +1,72 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv5ugao1kqjoo"]
+[gd_scene load_steps=11 format=3 uid="uid://bv5ugao1kqjoo"]
 
 [ext_resource type="Texture2D" uid="uid://dyibr6m08rlf6" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_dk073"]
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_v6fhc"]
-[ext_resource type="PackedScene" uid="uid://dt8icktcod2py" path="res://scenes/game_object/component/health_compentent.tscn" id="2_xq0ml"]
-[ext_resource type="PackedScene" uid="uid://o6skasynj1vd" path="res://scenes/game_object/component/vial_drop_component.tscn" id="3_p3xvj"]
-[ext_resource type="PackedScene" uid="uid://duwo2vjvfnoig" path="res://scenes/game_object/component/hurtbox_component.tscn" id="4_hlb0u"]
+[ext_resource type="PackedScene" uid="uid://dt8icktcod2py" path="res://scenes/game_object/component/health_compentent.tscn" id="2_o26ew"]
+[ext_resource type="PackedScene" uid="uid://o6skasynj1vd" path="res://scenes/game_object/component/vial_drop_component.tscn" id="3_nn5nm"]
+[ext_resource type="PackedScene" uid="uid://duwo2vjvfnoig" path="res://scenes/game_object/component/hurtbox_component.tscn" id="4_cujwj"]
+
+[sub_resource type="Animation" id="Animation_n3gxc"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 2.08165e-12), Vector2(1, 2.08165e-12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, -0.174533, 3.48787e-16]
+}
+
+[sub_resource type="Animation" id="Animation_w58i3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_opmx4"]
+_data = {
+"RESET": SubResource("Animation_w58i3"),
+"walk": SubResource("Animation_n3gxc")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpou3"]
 radius = 12.0
@@ -18,12 +80,18 @@ collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_v6fhc")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_xq0ml")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_opmx4")
+}
+autoplay = "walk"
 
-[node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_p3xvj")]
+[node name="HealthComponent" parent="." instance=ExtResource("2_o26ew")]
+
+[node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_nn5nm")]
 health_component = NodePath("../HealthComponent")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_hlb0u")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_cujwj")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
@@ -32,7 +100,9 @@ visibility_layer = 4
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_cpou3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 texture = ExtResource("1_dk073")
 offset = Vector2(2.08165e-12, -4)
 
