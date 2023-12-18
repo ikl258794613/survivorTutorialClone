@@ -6,6 +6,6 @@ Record Tutorial
 
 https://godotengine.org/
 
-> 1. dowload godot engine
-> 2. dowload this project
-> 3. use godot engine open this project
+> 1. Dowload godot engine
+> 2. Dowload this project
+> 3. Use godot engine and open this project
